@@ -1,0 +1,12 @@
+{
+  "pack_id": "axiom.manufacturing.quality-inspection.v1",
+  "buyer_decision": "Improve defect detection and test coverage without waiting for costly scrap or line failures",
+  "modalities": ["tabular", "time_series", "image", "event", "relational"],
+  "minimum_assets": ["process parameters", "lot/part genealogy", "quality outcome", "independent real validation set"],
+  "scenario_families": ["rare defect class", "boundary process window", "compound parameter interaction", "supplier/material shift", "sensor/camera domain shift", "label ambiguity"],
+  "hard_constraints": ["lot and part keys resolve", "process step order is legal", "measurement tolerances follow approved specification", "visual annotations match generated scenario"],
+  "acceptance_metrics": ["per-defect recall", "false reject rate", "lot-level coverage", "real-holdout performance", "manual inspection effort", "scrap avoided"],
+  "adapter_requirements": ["approved visual simulator or image generator", "annotation validation", "camera and lighting parameter manifest"],
+  "privacy_ip_controls": ["protect CAD/process recipes", "private execution", "proprietary-marking and memorization review"],
+  "required_approvers": ["manufacturing quality owner", "process engineer", "computer-vision owner", "security/IP owner"]
+}

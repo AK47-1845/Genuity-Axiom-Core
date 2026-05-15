@@ -1,0 +1,134 @@
+Metadata-Version: 2.4
+Name: genuity-axiom
+Version: 0.3.0
+Summary: Genuity Axiom: evidence-gated synthetic and rare-scenario data infrastructure for industrial AI.
+Author: Genuity IO
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.24
+Requires-Dist: pandas>=2.0
+Provides-Extra: ml
+Requires-Dist: scikit-learn>=1.3; extra == "ml"
+Provides-Extra: dev
+Requires-Dist: pytest>=8; extra == "dev"
+
+# Genuity Axiom v0.3
+
+Genuity Axiom is evidence-gated synthetic and rare-scenario data infrastructure for industrial AI. It generates local tabular baselines, validates engineering constraints and disclosure risk, and records whether an artifact is approved, needs review, or is blocked for a named use.
+
+Start with [`START_HERE.md`](START_HERE.md). The product name is **Axiom**; `pramana` remains only as a compatibility alias.
+
+Company-wide strategy remains at the workspace root: [`START_HERE_GENUITY_IO.md`](../START_HERE_GENUITY_IO.md). The immediate evidence-reconciliation wedge is independently contained in [`Genuity2.0 usecase1`](<../Genuity2.0 usecase1/README.md>).
+
+## Why it exists
+
+Industrial teams need failures, boundary conditions and privacy-safe test states that are expensive, unsafe or slow to collect. Axiom treats generation as one component of a controlled workflow:
+
+`intended use → privacy gate → profile → route → generate → constrain → evaluate on holdout → hard release gate → manifest`
+
+Axiom does not equate statistical similarity with safety or usefulness. Strong fidelity cannot average away exact record reuse, invalid physics, missing holdout evidence or required approvals.
+
+## Install and run
+
+```bash
+cd genuity_axiom
+pip install -e .
+genuity-axiom input.csv output.csv --rows 10000 --risk-tier internal \
+  --purpose "predictive-maintenance model development"
+```
+
+Install `pip install -e ".[ml]"` when a target column requires downstream utility/detectability models. Without the optional evaluator, task-defined internal/external releases fail closed rather than reporting invented utility.
+
+By default the CLI writes the JSON evidence report but exports data only when the decision is `approved`. `--allow-unapproved-export` exists only for explicit sandbox investigation of `review` or `blocked` artifacts.
+Input, output and report paths must be distinct; existing artifacts require an explicit `--overwrite`.
+
+```python
+from genuity_axiom import (
+    EngineeringConstraintSet,
+    GenuityAxiomEngine,
+    IntendedUse,
+    SynthesisConfig,
+)
+
+constraints = (
+    EngineeringConstraintSet()
+    .add_bound("temperature_c", min_value=-40, max_value=180)
+    .add_comparison("yield_strength_mpa", "le", "tensile_strength_mpa")
+)
+
+result = GenuityAxiomEngine().synthesize(
+    real_df,
+    config=SynthesisConfig(
+        n_samples=5_000,
+        target_col="failure_mode",
+        constraints=constraints,
+        privacy_level="strict",
+        risk_tier="internal",
+        quality_mode="max",
+        intended_use=IntendedUse(
+            purpose="offline failure-classifier development",
+            prohibited_uses=["automatic safety actuation"],
+        ),
+    ),
+)
+
+print(result.release.to_dict())
+print(result.manifest.to_dict())
+```
+
+## Implemented capability levels
+
+- **Native:** tabular profiling, local generation, conditions, constraints, evaluation, release gates and lineage.
+- **Baseline:** temporal block synthesis, relational PK/FK-preserving synthesis, rare-event boundary candidates, unstructured identifier replacement and leakage audit.
+- **Validation-only:** graph, simulation and multimodal bundle contracts.
+- **Adapter-required:** native image, audio and video generation; high-quality language/document generation; advanced neural/physics models.
+
+Query the executable registry rather than relying on prose:
+
+```python
+from genuity_axiom import AxiomEnterpriseEngine
+
+axiom = AxiomEnterpriseEngine()
+print(axiom.capabilities.matrix())
+```
+
+## Local tabular generators
+
+`gmm`, `kde`, `gaussian_copula`, `stratified_bootstrap`, and `bootstrap`. Model routing records reasons and fallback attempts. `quality_mode="max"` compares local candidates; it is still subject to the independent release gate.
+
+## Evidence produced
+
+- source/output/configuration fingerprints and deterministic run ID;
+- intended purpose, recipient and prohibited uses;
+- statistical, missingness, correlation, range and optional task utility;
+- exact duplicates, nearest-neighbour and membership-inspired indicators;
+- physical/domain constraint report;
+- generator attempts and selection evidence;
+- hard release checks, limitations and human approvals where required;
+- data card and machine-readable report.
+
+## Critical limitations
+
+- Current privacy tests are useful diagnostics, not proof of anonymity.
+- `dp-ready` is a preparation mode, not formal differential privacy. A DP claim requires mechanism, epsilon, delta and accountant evidence.
+- Automatic constraints are heuristics; a domain owner must author/approve decision-critical physics.
+- The temporal and relational generators are deterministic baselines, not deep learned models.
+- Pattern-based unstructured transformation does not cover contextual identifiers, names, proprietary entities, faces, OCR or domain secrets.
+- This package is not by itself an enterprise-secure hosted service or legal compliance certification.
+
+## Documentation
+
+- [`docs/AXIOM_ENTERPRISE_ARCHITECTURE.md`](docs/AXIOM_ENTERPRISE_ARCHITECTURE.md)
+- [`docs/AXIOM_EVALUATION_AND_RELEASE_STANDARD.md`](docs/AXIOM_EVALUATION_AND_RELEASE_STANDARD.md)
+- [`docs/AXIOM_GLOBAL_MARKET_RESEARCH_2026.md`](docs/AXIOM_GLOBAL_MARKET_RESEARCH_2026.md)
+- [`docs/AXIOM_LTTS_4_MONTH_USE_CASE_PLAYBOOK.md`](docs/AXIOM_LTTS_4_MONTH_USE_CASE_PLAYBOOK.md)
+- [`docs/AXIOM_LTTS_SYNTHESIS_TASK_ROUTER.md`](docs/AXIOM_LTTS_SYNTHESIS_TASK_ROUTER.md)
+- [`docs/AXIOM_FOUNDER_CONTINUATION_GUIDE.md`](docs/AXIOM_FOUNDER_CONTINUATION_GUIDE.md)
+
+## Verification
+
+```bash
+python -m unittest discover -s tests -p "test_*.py" -v
+```
+
+The enterprise and original Axiom/Pramana smoke tests live in `genuity_axiom/tests/`.

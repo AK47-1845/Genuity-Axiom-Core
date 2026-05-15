@@ -1,0 +1,11 @@
+{
+  "pack_id": "axiom.healthcare.deid-rare-events.v1",
+  "buyer_decision": "Develop and validate models on rare clinical/operational pathways with controlled disclosure risk",
+  "modalities": ["relational", "event", "time_series", "text", "document", "image"],
+  "scenario_families": ["rare pathway", "comorbidity combination", "workflow delay", "missing observation", "distribution shift", "device boundary"],
+  "hard_constraints": ["patient/encounter/order keys resolve", "clinical event chronology", "unit and reference-range consistency", "treatment/outcome semantics reviewed by clinician"],
+  "acceptance_metrics": ["real-holdout clinical/task utility", "subgroup performance", "pathway coverage", "disclosure risk under release context", "clinician review"],
+  "privacy_controls": ["expert de-identification where required", "direct/quasi-identifier and free-text review", "private execution", "minimum necessary fields", "recipient and retention contract"],
+  "prohibited_claims": ["synthetic means HIPAA-compliant", "clinical validity without clinician and real-world validation"],
+  "required_approvers": ["clinical owner", "privacy/legal owner", "model-risk owner", "security owner"]
+}

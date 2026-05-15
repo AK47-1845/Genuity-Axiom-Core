@@ -1,0 +1,10 @@
+{
+  "pack_id": "axiom.enterprise.test-data.v1",
+  "buyer_decision": "Provision realistic non-production databases for development, QA, demos and load testing",
+  "modalities": ["relational", "tabular", "document", "text", "event"],
+  "scenario_families": ["empty and maximum fields", "invalid user journey", "high-cardinality account", "cross-table boundary", "locale and timezone", "load and concurrency volume"],
+  "hard_constraints": ["zero orphan foreign keys", "unique primary keys", "schema/nullability/type conformance", "business-state transitions", "no source secrets or direct identifiers"],
+  "acceptance_metrics": ["test pass and coverage delta", "environment provisioning time", "database constraint pass rate", "source-record overlap", "developer adoption"],
+  "privacy_ip_controls": ["PII and secret scan", "recipient and environment contract", "retention and deletion", "no production credential reuse"],
+  "required_approvers": ["application owner", "data owner", "privacy/security owner for sensitive schemas"]
+}

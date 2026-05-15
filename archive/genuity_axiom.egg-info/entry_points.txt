@@ -1,0 +1,3 @@
+[console_scripts]
+genuity-axiom = genuity_axiom.cli:main
+pramana = genuity_axiom.cli:main

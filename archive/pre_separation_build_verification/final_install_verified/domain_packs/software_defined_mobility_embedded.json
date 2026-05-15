@@ -1,0 +1,11 @@
+{
+  "pack_id": "axiom.mobility.sdv-embedded.v1",
+  "buyer_decision": "Increase software/vehicle test coverage for rare state, timing, diagnostic and sensor conditions",
+  "modalities": ["time_series", "event", "relational", "text", "simulation", "image", "video"],
+  "scenario_families": ["message loss or delay", "illegal state-transition attempt", "rare diagnostic code", "sensor dropout/drift", "battery or thermal boundary", "ADAS weather/lighting/occlusion corner", "software-version interaction"],
+  "hard_constraints": ["vehicle state machine legality", "signal units/ranges and cadence", "event causality", "software/configuration lineage", "sensor labels synchronized with scenario"],
+  "acceptance_metrics": ["requirements and code coverage delta", "fault-detection recall", "false intervention rate", "scenario coverage", "reproducibility", "test-cycle time"],
+  "required_approvers": ["vehicle/embedded domain owner", "functional-safety or validation owner", "software/test owner", "cybersecurity owner"],
+  "adapter_requirements": ["vehicle dynamics or sensor simulator for physical/visual claims", "approved protocol/test harness"],
+  "prohibited_claims": ["generated tests establish functional-safety certification", "Axiom is a vehicle simulator"]
+}

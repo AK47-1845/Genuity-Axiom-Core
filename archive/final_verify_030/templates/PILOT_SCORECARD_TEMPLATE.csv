@@ -1,0 +1,11 @@
+metric,definition,baseline,target,actual,result,evidence
+critical_field_precision,Correct accepted critical fields divided by accepted critical fields,,>=0.995,,,
+critical_field_auto_coverage,Correct accepted critical fields divided by expected critical fields,Report only,Report only,,,
+accepted_field_evidence_coverage,Accepted fields with resolvable evidence divided by accepted fields,,1.0,,,
+unsupported_critical_auto_fills,Accepted critical fields without permitted support,,0,,,
+silent_conflict_resolutions,Conflicts loaded without review,,0,,,
+external_routing_rate,Routed pages or regions divided by agreed denominator,,<0.10,,,
+exception_minutes_per_completed_record,Reviewer minutes divided by completed records,,-30% vs baseline,,,
+cost_per_verified_field,All compute API and review cost divided by verified accepted fields,,-30% vs baseline,,,
+unresolved_visibility,Unresolved fields present in exception export,,1.0,,,
+reproducibility,Identical inputs and pack produce identical semantic fingerprint,,PASS,,,

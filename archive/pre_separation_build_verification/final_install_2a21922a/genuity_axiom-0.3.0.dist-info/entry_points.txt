@@ -1,0 +1,4 @@
+[console_scripts]
+genuity-axiom = genuity_axiom.cli:main
+genuity-reconcile = genuity_reconcile.cli:main
+pramana = genuity_axiom.cli:main

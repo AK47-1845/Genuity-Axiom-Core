@@ -1,0 +1,11 @@
+{
+  "pack_id": "axiom.energy-scada.edge-cases.v1",
+  "buyer_decision": "Offline validation of anomaly detection and operator-support models across unsafe or rare states",
+  "modalities": ["time_series", "event", "graph", "text"],
+  "scenario_families": ["sensor freeze or drift", "communication loss", "startup/shutdown transition", "load or pressure boundary", "compound equipment anomaly", "false alarm look-alike"],
+  "hard_constraints": ["topology references resolve", "timestamps and control events are causal", "approved pressure/flow/load envelopes", "state transitions are legal", "no scenario is injected into live control"],
+  "acceptance_metrics": ["detection recall at fixed false-positive rate", "time to detect", "operator scenario coverage", "simulator/domain validity", "false alarm reduction"],
+  "privacy_ip_controls": ["critical-infrastructure handling", "air-gapped/private runner", "site and asset pseudonymization", "egress deny-by-default"],
+  "prohibited_uses": ["live actuation", "operator replacement", "safety certification without system-level evidence"],
+  "required_approvers": ["operations/domain owner", "control/safety engineer", "cybersecurity owner", "model owner"]
+}

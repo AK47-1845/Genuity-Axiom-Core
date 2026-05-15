@@ -1,0 +1,11 @@
+{
+  "pack_id": "axiom.aerospace.structural-validation.v1",
+  "buyer_decision": "Prioritize structural designs and validate surrogate/ML models across sparse load-material-environment combinations",
+  "modalities": ["tabular", "simulation", "time_series"],
+  "scenario_families": ["combined load boundary", "material property tolerance", "temperature and fatigue interaction", "damage precursor", "sensor uncertainty", "out-of-domain geometry"],
+  "hard_constraints": ["units and coordinate systems explicit", "yield strength does not exceed approved tensile relationship", "loads and dimensions remain in approved design envelope", "solver convergence and version recorded", "train/holdout separated by design family where required"],
+  "acceptance_metrics": ["real or high-fidelity holdout error", "constraint pass rate", "design-space coverage", "uncertainty calibration", "simulation hours avoided"],
+  "required_approvers": ["structures/materials engineer", "simulation owner", "model owner"],
+  "adapter_requirements": ["approved CAE/physics solver for new geometries or physical claims"],
+  "prohibited_claims": ["statistically valid data certifies an aerospace design", "tabular constraints replace structural analysis"]
+}

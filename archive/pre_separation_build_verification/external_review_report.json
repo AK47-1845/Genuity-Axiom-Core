@@ -1,0 +1,688 @@
+{
+  "generator_name": "gaussian_copula",
+  "decision": {
+    "strategy": "balanced",
+    "actual_order": [
+      "kde",
+      "gmm",
+      "gaussian_copula",
+      "stratified_bootstrap",
+      "bootstrap"
+    ],
+    "frontier_order": [
+      "physics_residual_sampler",
+      "constraint_rejection_sampler",
+      "arf",
+      "tabudiff",
+      "tabddpm",
+      "tvae"
+    ],
+    "reasons": [
+      "numeric-heavy engineering data benefits from KDE/GMM/Copula baselines and diffusion adapters",
+      "geometry and material roles detected; physics residual checks should gate generated rows"
+    ],
+    "warnings": []
+  },
+  "profile": {
+    "n_rows": 32581,
+    "n_cols": 12,
+    "modality": "tabular",
+    "engineering_domain": "maintenance",
+    "numeric_columns": [
+      "person_age",
+      "person_income",
+      "person_emp_length",
+      "loan_amnt",
+      "loan_int_rate",
+      "loan_status",
+      "loan_percent_income",
+      "cb_person_cred_hist_length"
+    ],
+    "categorical_columns": [
+      "person_home_ownership",
+      "loan_intent",
+      "loan_grade",
+      "cb_person_default_on_file"
+    ],
+    "text_columns": [],
+    "datetime_columns": [],
+    "recommended_generators": [
+      "gmm",
+      "kde",
+      "gaussian_copula",
+      "stratified_bootstrap",
+      "bootstrap"
+    ],
+    "risk_flags": [],
+    "semantic_roles": {
+      "person_age": "feature",
+      "person_income": "feature",
+      "person_home_ownership": "feature",
+      "person_emp_length": "geometry",
+      "loan_intent": "feature",
+      "loan_grade": "material_descriptor",
+      "loan_amnt": "feature",
+      "loan_int_rate": "feature",
+      "loan_status": "feature",
+      "loan_percent_income": "feature",
+      "cb_person_default_on_file": "feature",
+      "cb_person_cred_hist_length": "geometry"
+    },
+    "columns": [
+      {
+        "name": "person_age",
+        "kind": "integer",
+        "dtype": "int64",
+        "missing_rate": 0.0,
+        "unique_count": 58,
+        "min_value": 20.0,
+        "max_value": 144.0,
+        "mean": 27.73459992019889,
+        "std": 6.347980998533393,
+        "risk_flags": []
+      },
+      {
+        "name": "person_income",
+        "kind": "integer",
+        "dtype": "int64",
+        "missing_rate": 0.0,
+        "unique_count": 4295,
+        "min_value": 4000.0,
+        "max_value": 6000000.0,
+        "mean": 66074.84846996715,
+        "std": 61982.16794513364,
+        "risk_flags": []
+      },
+      {
+        "name": "person_home_ownership",
+        "kind": "categorical",
+        "dtype": "str",
+        "missing_rate": 0.0,
+        "unique_count": 4,
+        "min_value": null,
+        "max_value": null,
+        "mean": null,
+        "std": null,
+        "risk_flags": []
+      },
+      {
+        "name": "person_emp_length",
+        "kind": "numeric",
+        "dtype": "float64",
+        "missing_rate": 0.027469997851508547,
+        "unique_count": 36,
+        "min_value": 0.0,
+        "max_value": 123.0,
+        "mean": 4.789686296787225,
+        "std": 4.1425647783325,
+        "risk_flags": []
+      },
+      {
+        "name": "loan_intent",
+        "kind": "categorical",
+        "dtype": "str",
+        "missing_rate": 0.0,
+        "unique_count": 6,
+        "min_value": null,
+        "max_value": null,
+        "mean": null,
+        "std": null,
+        "risk_flags": []
+      },
+      {
+        "name": "loan_grade",
+        "kind": "categorical",
+        "dtype": "str",
+        "missing_rate": 0.0,
+        "unique_count": 7,
+        "min_value": null,
+        "max_value": null,
+        "mean": null,
+        "std": null,
+        "risk_flags": []
+      },
+      {
+        "name": "loan_amnt",
+        "kind": "integer",
+        "dtype": "int64",
+        "missing_rate": 0.0,
+        "unique_count": 753,
+        "min_value": 500.0,
+        "max_value": 35000.0,
+        "mean": 9589.371105859243,
+        "std": 6321.989623982661,
+        "risk_flags": []
+      },
+      {
+        "name": "loan_int_rate",
+        "kind": "numeric",
+        "dtype": "float64",
+        "missing_rate": 0.0956385623522912,
+        "unique_count": 348,
+        "min_value": 5.42,
+        "max_value": 23.22,
+        "mean": 11.011694892245036,
+        "std": 3.240404476207269,
+        "risk_flags": []
+      },
+      {
+        "name": "loan_status",
+        "kind": "binary",
+        "dtype": "int64",
+        "missing_rate": 0.0,
+        "unique_count": 2,
+        "min_value": 0.0,
+        "max_value": 1.0,
+        "mean": 0.21816396059052823,
+        "std": 0.41299933037473885,
+        "risk_flags": []
+      },
+      {
+        "name": "loan_percent_income",
+        "kind": "numeric",
+        "dtype": "float64",
+        "missing_rate": 0.0,
+        "unique_count": 77,
+        "min_value": 0.0,
+        "max_value": 0.83,
+        "mean": 0.17020349283324637,
+        "std": 0.10678011762027274,
+        "risk_flags": []
+      },
+      {
+        "name": "cb_person_default_on_file",
+        "kind": "categorical",
+        "dtype": "str",
+        "missing_rate": 0.0,
+        "unique_count": 2,
+        "min_value": null,
+        "max_value": null,
+        "mean": null,
+        "std": null,
+        "risk_flags": []
+      },
+      {
+        "name": "cb_person_cred_hist_length",
+        "kind": "integer",
+        "dtype": "int64",
+        "missing_rate": 0.0,
+        "unique_count": 29,
+        "min_value": 2.0,
+        "max_value": 30.0,
+        "mean": 5.804211043246064,
+        "std": 4.054938934697074,
+        "risk_flags": []
+      }
+    ]
+  },
+  "compliance": {
+    "passed": true,
+    "privacy_level": "standard",
+    "original_columns": [
+      "person_age",
+      "person_income",
+      "person_home_ownership",
+      "person_emp_length",
+      "loan_intent",
+      "loan_grade",
+      "loan_amnt",
+      "loan_int_rate",
+      "loan_status",
+      "loan_percent_income",
+      "cb_person_default_on_file",
+      "cb_person_cred_hist_length"
+    ],
+    "retained_columns": [
+      "person_age",
+      "person_income",
+      "person_home_ownership",
+      "person_emp_length",
+      "loan_intent",
+      "loan_grade",
+      "loan_amnt",
+      "loan_int_rate",
+      "loan_status",
+      "loan_percent_income",
+      "cb_person_default_on_file",
+      "cb_person_cred_hist_length"
+    ],
+    "removed_columns": [],
+    "masked_columns": [],
+    "pii_columns": [],
+    "identifier_columns": [],
+    "warnings": []
+  },
+  "constraints": {
+    "passed": true,
+    "total_rules": 0,
+    "total_violations": 0,
+    "violations_by_rule": {},
+    "repaired_rows": 0,
+    "blocking_violations": 0,
+    "warning_violations": 0
+  },
+  "evaluation": {
+    "overall_score": 0.9482416549165482,
+    "similarity_score": 0.878645120916134,
+    "correlation_score": 0.9622142834287873,
+    "privacy_score": 0.9951766358771216,
+    "utility_score": null,
+    "missingness_score": 0.9895769388172703,
+    "range_score": 1.0,
+    "membership_attack_score": 1.0,
+    "holdout_similarity_gap": 0.004404610244187035,
+    "detectability_score": null,
+    "constraint_score": 1.0,
+    "details": {
+      "similarity": {
+        "person_age": 0.8771080150805894,
+        "person_income": 0.6809114747340783,
+        "person_home_ownership": 0.9604849600982197,
+        "person_emp_length": 0.9036913098858158,
+        "loan_intent": 0.9097421731123388,
+        "loan_grade": 0.9601350521792511,
+        "loan_amnt": 0.8086626118793883,
+        "loan_int_rate": 0.9325555505081248,
+        "loan_status": 0.8692599587477612,
+        "loan_percent_income": 0.785100857743319,
+        "cb_person_default_on_file": 0.9666052793124617,
+        "cb_person_cred_hist_length": 0.8894842077122599
+      },
+      "privacy": {
+        "exact_duplicate_rate": 0.0,
+        "nearest_neighbor_score": 0.9814485995273904
+      },
+      "train_similarity": 0.883049731160321,
+      "constraint_warning_violations": 0,
+      "condition_match_rate": 1.0
+    }
+  },
+  "data_card": {
+    "title": "Genuity Axiom Synthetic Data Card",
+    "created_at": "2026-08-13T10:46:13.018444+00:00",
+    "summary": {
+      "generator": "gaussian_copula",
+      "rows": 100,
+      "columns": 12,
+      "domain": "maintenance",
+      "modality": "tabular",
+      "overall_score": 0.9482416549165482,
+      "privacy_score": 0.9951766358771216,
+      "constraint_score": 1.0,
+      "release_decision": "review",
+      "risk_tier": "external"
+    },
+    "risks": [
+      "release_review"
+    ],
+    "recommended_next_actions": [
+      "resolve failed release gates: domain_owner_approval, privacy_owner_approval"
+    ]
+  },
+  "attempts": [
+    {
+      "name": "kde",
+      "status": "failed",
+      "message": "scikit-learn is required for KDE"
+    },
+    {
+      "name": "gmm",
+      "status": "failed",
+      "message": "scikit-learn is required for GMM"
+    },
+    {
+      "name": "gaussian_copula",
+      "status": "success",
+      "message": ""
+    }
+  ],
+  "candidate_scores": {},
+  "release": {
+    "decision": "review",
+    "risk_tier": "external",
+    "passed": false,
+    "checks": [
+      {
+        "name": "similarity_score",
+        "passed": true,
+        "severity": "blocker",
+        "observed": 0.878645120916134,
+        "required": ">=0.8",
+        "explanation": "Minimum statistical fitness for the declared tabular use"
+      },
+      {
+        "name": "missingness_score",
+        "passed": true,
+        "severity": "blocker",
+        "observed": 0.9895769388172703,
+        "required": ">=0.95",
+        "explanation": "Missing-data behavior must remain within the approved tolerance"
+      },
+      {
+        "name": "privacy_score",
+        "passed": true,
+        "severity": "blocker",
+        "observed": 0.9951766358771216,
+        "required": ">=0.85",
+        "explanation": "Attack-inspired aggregate privacy gate"
+      },
+      {
+        "name": "constraint_score",
+        "passed": true,
+        "severity": "blocker",
+        "observed": 1.0,
+        "required": ">=0.99",
+        "explanation": "Domain and engineering constraints must pass independently"
+      },
+      {
+        "name": "range_score",
+        "passed": true,
+        "severity": "blocker",
+        "observed": 1.0,
+        "required": ">=0.99",
+        "explanation": "Generated numeric values must remain inside approved support"
+      },
+      {
+        "name": "condition_match_rate",
+        "passed": true,
+        "severity": "blocker",
+        "observed": 1.0,
+        "required": ">=1.0",
+        "explanation": "Every released row must satisfy the requested generation conditions"
+      },
+      {
+        "name": "membership_attack_score",
+        "passed": true,
+        "severity": "blocker",
+        "observed": 1.0,
+        "required": ">=0.8",
+        "explanation": "Train membership should not be easier to infer than holdout membership"
+      },
+      {
+        "name": "exact_duplicate_rate",
+        "passed": true,
+        "severity": "blocker",
+        "observed": 0.0,
+        "required": "<=0.0",
+        "explanation": "Direct record reuse is release-sensitive"
+      },
+      {
+        "name": "holdout_similarity_gap",
+        "passed": true,
+        "severity": "blocker",
+        "observed": 0.004404610244187035,
+        "required": "<=0.1",
+        "explanation": "Train-vs-holdout gap is an overfit warning"
+      },
+      {
+        "name": "compliance_precheck",
+        "passed": true,
+        "severity": "blocker",
+        "observed": true,
+        "required": true,
+        "explanation": "Pre-generation privacy/compliance blockers must be resolved"
+      },
+      {
+        "name": "modality_appropriate_evaluation",
+        "passed": true,
+        "severity": "blocker",
+        "observed": true,
+        "required": true,
+        "explanation": "The generator and evaluator must test the structure and dynamics of the declared modality"
+      },
+      {
+        "name": "constraint_warnings_reviewed",
+        "passed": true,
+        "severity": "review",
+        "observed": 0,
+        "required": 0,
+        "explanation": "Non-blocking domain warnings require an accountable review before the artifact is treated as fully approved"
+      },
+      {
+        "name": "independent_holdout",
+        "passed": true,
+        "severity": "blocker",
+        "observed": true,
+        "required": true,
+        "explanation": "Training data cannot serve as its own release test"
+      },
+      {
+        "name": "direct_identifiers_removed",
+        "passed": true,
+        "severity": "blocker",
+        "observed": [],
+        "required": [],
+        "explanation": "Detected identifiers cannot remain in a released dataset"
+      },
+      {
+        "name": "domain_owner_approval",
+        "passed": false,
+        "severity": "review",
+        "observed": false,
+        "required": true,
+        "explanation": "A domain owner must approve intended use and constraints"
+      },
+      {
+        "name": "privacy_owner_approval",
+        "passed": false,
+        "severity": "review",
+        "observed": false,
+        "required": true,
+        "explanation": "A privacy owner must approve recipient and release context"
+      }
+    ],
+    "limitations": [
+      "A release decision does not establish GDPR, HIPAA, DPDP, PCI, safety, or sector compliance; legal, privacy, security, and domain obligations remain contextual.",
+      "Scores describe the evaluated dataset, recipient model, holdout, and threat assumptions; they are not universal anonymity guarantees."
+    ]
+  },
+  "manifest": {
+    "run_id": "42491019eb94cf15641e659e",
+    "created_at": "2026-08-13T10:46:12.990622+00:00",
+    "package_version": "0.3.0",
+    "generator": "gaussian_copula",
+    "random_state": 42,
+    "input_fingerprint": "f12ae1811d553e9cc651aab7d70324f9655a7214b4787d76e21467db6328f694",
+    "output_fingerprint": "f39c03a54d0e88588f6eca1ef58e3ab7e26bc4280471eba1edd8128fc47f6291",
+    "configuration": {
+      "n_samples": 100,
+      "target_col": null,
+      "time_col": null,
+      "entity_col": null,
+      "privacy_level": "standard",
+      "compliance_strategy": "drop",
+      "conditions": null,
+      "constraints": null,
+      "fallback_order": null,
+      "random_state": 42,
+      "repair_constraints": true,
+      "holdout_fraction": 0.2,
+      "quality_mode": "balanced",
+      "risk_tier": "external",
+      "release_policy": null,
+      "intended_use": {
+        "purpose": "external review export safety test",
+        "users": [],
+        "prohibited_uses": [],
+        "recipient": null,
+        "jurisdiction": [],
+        "retention_days": null
+      },
+      "formal_dp_evidence": null,
+      "approvals": []
+    },
+    "configuration_fingerprint": "8e98f7c80b1ccf091c8510251e7b773bb950d7ce026b950121d64e3286fe559a",
+    "input_rows": 32581,
+    "output_rows": 100,
+    "columns": [
+      "person_age",
+      "person_income",
+      "person_home_ownership",
+      "person_emp_length",
+      "loan_intent",
+      "loan_grade",
+      "loan_amnt",
+      "loan_int_rate",
+      "loan_status",
+      "loan_percent_income",
+      "cb_person_default_on_file",
+      "cb_person_cred_hist_length"
+    ],
+    "intended_use": {
+      "purpose": "external review export safety test",
+      "users": [],
+      "prohibited_uses": [],
+      "recipient": null,
+      "jurisdiction": [],
+      "retention_days": null
+    },
+    "release": {
+      "decision": "review",
+      "risk_tier": "external",
+      "passed": false,
+      "checks": [
+        {
+          "name": "similarity_score",
+          "passed": true,
+          "severity": "blocker",
+          "observed": 0.878645120916134,
+          "required": ">=0.8",
+          "explanation": "Minimum statistical fitness for the declared tabular use"
+        },
+        {
+          "name": "missingness_score",
+          "passed": true,
+          "severity": "blocker",
+          "observed": 0.9895769388172703,
+          "required": ">=0.95",
+          "explanation": "Missing-data behavior must remain within the approved tolerance"
+        },
+        {
+          "name": "privacy_score",
+          "passed": true,
+          "severity": "blocker",
+          "observed": 0.9951766358771216,
+          "required": ">=0.85",
+          "explanation": "Attack-inspired aggregate privacy gate"
+        },
+        {
+          "name": "constraint_score",
+          "passed": true,
+          "severity": "blocker",
+          "observed": 1.0,
+          "required": ">=0.99",
+          "explanation": "Domain and engineering constraints must pass independently"
+        },
+        {
+          "name": "range_score",
+          "passed": true,
+          "severity": "blocker",
+          "observed": 1.0,
+          "required": ">=0.99",
+          "explanation": "Generated numeric values must remain inside approved support"
+        },
+        {
+          "name": "condition_match_rate",
+          "passed": true,
+          "severity": "blocker",
+          "observed": 1.0,
+          "required": ">=1.0",
+          "explanation": "Every released row must satisfy the requested generation conditions"
+        },
+        {
+          "name": "membership_attack_score",
+          "passed": true,
+          "severity": "blocker",
+          "observed": 1.0,
+          "required": ">=0.8",
+          "explanation": "Train membership should not be easier to infer than holdout membership"
+        },
+        {
+          "name": "exact_duplicate_rate",
+          "passed": true,
+          "severity": "blocker",
+          "observed": 0.0,
+          "required": "<=0.0",
+          "explanation": "Direct record reuse is release-sensitive"
+        },
+        {
+          "name": "holdout_similarity_gap",
+          "passed": true,
+          "severity": "blocker",
+          "observed": 0.004404610244187035,
+          "required": "<=0.1",
+          "explanation": "Train-vs-holdout gap is an overfit warning"
+        },
+        {
+          "name": "compliance_precheck",
+          "passed": true,
+          "severity": "blocker",
+          "observed": true,
+          "required": true,
+          "explanation": "Pre-generation privacy/compliance blockers must be resolved"
+        },
+        {
+          "name": "modality_appropriate_evaluation",
+          "passed": true,
+          "severity": "blocker",
+          "observed": true,
+          "required": true,
+          "explanation": "The generator and evaluator must test the structure and dynamics of the declared modality"
+        },
+        {
+          "name": "constraint_warnings_reviewed",
+          "passed": true,
+          "severity": "review",
+          "observed": 0,
+          "required": 0,
+          "explanation": "Non-blocking domain warnings require an accountable review before the artifact is treated as fully approved"
+        },
+        {
+          "name": "independent_holdout",
+          "passed": true,
+          "severity": "blocker",
+          "observed": true,
+          "required": true,
+          "explanation": "Training data cannot serve as its own release test"
+        },
+        {
+          "name": "direct_identifiers_removed",
+          "passed": true,
+          "severity": "blocker",
+          "observed": [],
+          "required": [],
+          "explanation": "Detected identifiers cannot remain in a released dataset"
+        },
+        {
+          "name": "domain_owner_approval",
+          "passed": false,
+          "severity": "review",
+          "observed": false,
+          "required": true,
+          "explanation": "A domain owner must approve intended use and constraints"
+        },
+        {
+          "name": "privacy_owner_approval",
+          "passed": false,
+          "severity": "review",
+          "observed": false,
+          "required": true,
+          "explanation": "A privacy owner must approve recipient and release context"
+        }
+      ],
+      "limitations": [
+        "A release decision does not establish GDPR, HIPAA, DPDP, PCI, safety, or sector compliance; legal, privacy, security, and domain obligations remain contextual.",
+        "Scores describe the evaluated dataset, recipient model, holdout, and threat assumptions; they are not universal anonymity guarantees."
+      ]
+    },
+    "environment": {
+      "python": "3.12.13",
+      "pandas": "3.0.1",
+      "platform": "Windows-11-10.0.26200-SP0"
+    },
+    "limitations": [
+      "A release decision does not establish GDPR, HIPAA, DPDP, PCI, safety, or sector compliance; legal, privacy, security, and domain obligations remain contextual.",
+      "Scores describe the evaluated dataset, recipient model, holdout, and threat assumptions; they are not universal anonymity guarantees."
+    ]
+  }
+}

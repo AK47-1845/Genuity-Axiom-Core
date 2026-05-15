@@ -1,0 +1,12 @@
+{
+  "pack_id": "axiom.predictive-maintenance.rare-events.v1",
+  "buyer_decision": "Validate failure detection and remaining-useful-life models before deployment",
+  "modalities": ["time_series", "event", "relational", "text"],
+  "minimum_assets": ["sensor telemetry", "asset/entity key", "maintenance or event log", "independent real holdout"],
+  "scenario_families": ["incipient degradation", "abrupt failure", "compound sensor drift plus load", "cold-start asset", "maintenance-reset transition", "missing or delayed sensor"],
+  "hard_constraints": ["timestamps ordered within asset", "legal operating-state transitions", "non-negative duration and load where applicable", "failure occurs after precursor window", "foreign keys resolve"],
+  "acceptance_metrics": ["event recall at fixed false-alarm rate", "lead-time distribution", "scenario coverage", "real-holdout TSTR", "engineer review", "validation-cycle time"],
+  "privacy_ip_controls": ["remove personnel/customer identifiers", "private runner for proprietary telemetry", "exact-window and nearest-neighbour leakage audit"],
+  "prohibited_claims": ["synthetic failures prove field safety", "range-valid telemetry is physically accurate"],
+  "required_approvers": ["reliability/domain owner", "model owner", "privacy or IP owner for external release"]
+}

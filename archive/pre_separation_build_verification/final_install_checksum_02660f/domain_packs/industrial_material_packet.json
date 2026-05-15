@@ -1,0 +1,127 @@
+{
+  "name": "industrial_material_packet",
+  "version": "1.0.0",
+  "description": "Material certificate and procurement-chain reconciliation demo.",
+  "document_types": {
+    "purchase_order": ["PURCHASE ORDER", "PO NUMBER"],
+    "invoice": ["SUPPLIER INVOICE", "INVOICE NUMBER"],
+    "bill_of_materials": ["BILL OF MATERIALS", "BOM NUMBER"],
+    "specification": ["MATERIAL SPECIFICATION", "SPECIFICATION NUMBER"],
+    "material_certificate": ["MATERIAL TEST CERTIFICATE", "CERTIFICATE NUMBER"],
+    "certificate_of_conformance": ["CERTIFICATE OF CONFORMANCE", "COC NUMBER"],
+    "chemistry_table": ["CHEMISTRY TABLE", "LADLE ANALYSIS"],
+    "mechanical_properties": ["MECHANICAL PROPERTIES", "TENSILE STRENGTH"],
+    "hardness_table": ["HARDNESS TEST TABLE", "HRC"],
+    "inspection_report": ["FINAL INSPECTION REPORT", "INSPECTOR SIGNOFF"]
+  },
+  "field_aliases": {
+    "po_no": "po_number",
+    "part_no": "part_number",
+    "heat_no": "heat_number",
+    "lot_no": "heat_number"
+  },
+  "critical_fields": [
+    "po_number",
+    "part_number",
+    "material_grade",
+    "heat_number",
+    "quantity",
+    "chemistry.Cr",
+    "chemistry.Ni",
+    "tensile_strength_mpa"
+  ],
+  "required_fields": {
+    "purchase_order": ["po_number", "part_number", "supplier", "quantity"],
+    "invoice": ["invoice_number", "po_number", "part_number", "quantity"],
+    "material_certificate": ["certificate_number", "heat_number", "material_grade"],
+    "inspection_report": ["part_number", "inspector_signoff"]
+  },
+  "source_authority": {
+    "quantity": ["purchase_order", "invoice"],
+    "part_number": ["purchase_order", "bill_of_materials", "invoice"],
+    "chemistry": ["material_certificate", "chemistry_table"],
+    "requirements": ["specification"]
+  },
+  "join_keys": ["po_number", "part_number", "certificate_number", "heat_number", "specification_number"],
+  "allowed_part_numbers": ["PN-70725"],
+  "normalisation": {
+    "material_grade_aliases": {
+      "INCONEL ALLOY 725": "INCONEL 725",
+      "UNS N07725": "INCONEL 725"
+    },
+    "unit_conversions": {
+      "psi_to_mpa": 0.006894757293168
+    },
+    "tensile_strength_mpa": {"minimum": 100.0, "maximum": 2500.0}
+  },
+  "permitted_reconstruction_methods": [
+    "alias_normalisation",
+    "ocr_confusion_with_domain_candidate",
+    "cross_document_exact_join",
+    "deterministic_calculation",
+    "quantity_times_unit_price",
+    "unit_constraint_recovery"
+  ],
+  "permitted_imputation_purposes": ["analytics_only"],
+  "review_threshold": 0.85,
+  "human_review": {
+    "hourly_cost_usd": 45.0,
+    "minutes_per_case": 1.5
+  },
+  "pricing": {
+    "as_of": "2026-08-12",
+    "currency": "USD",
+    "external_model": "gpt-5.4-mini",
+    "official_source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+    "vision_tokenization_source": "https://developers.openai.com/api/docs/guides/images-vision#calculating-costs",
+    "input_usd_per_million_tokens": 0.75,
+    "output_usd_per_million_tokens": 4.50,
+    "local_compute_usd_per_page": 0.00002,
+    "ocr_baseline_usd_per_page_assumption": 0.0015,
+    "ocr_baseline_source": "https://aws.amazon.com/textract/pricing/",
+    "vision_tokenization": {
+      "patch_size_pixels": 32,
+      "high_detail_patch_budget": 1536,
+      "gpt_5_4_mini_multiplier": 1.62,
+      "full_page_width_pixels": 1800,
+      "full_page_height_pixels": 2400,
+      "full_page_post_resize_patches": 1452,
+      "full_page_prompt_text_tokens": 150,
+      "full_page_output_tokens": 500,
+      "crop_width_pixels": 576,
+      "crop_height_pixels": 264,
+      "crop_prompt_text_tokens": 87,
+      "crop_output_tokens": 120
+    },
+    "market_benchmarks": [
+      {
+        "provider": "AWS Textract",
+        "service": "Detect Document Text",
+        "usd_per_page": 0.0015,
+        "scope": "OCR only, first 1 million pages in US West (Oregon)",
+        "source": "https://aws.amazon.com/textract/pricing/"
+      },
+      {
+        "provider": "AWS Textract",
+        "service": "Analyze Document Forms + Tables",
+        "usd_per_page": 0.065,
+        "scope": "Structure extraction, first 1 million pages in US West (Oregon)",
+        "source": "https://aws.amazon.com/textract/pricing/"
+      },
+      {
+        "provider": "Google Document AI",
+        "service": "Form Parser",
+        "usd_per_page": 0.03,
+        "scope": "Structure and entity extraction, first 1 million pages per month",
+        "source": "https://cloud.google.com/document-ai/pricing"
+      },
+      {
+        "provider": "Google Document AI",
+        "service": "Enterprise Document OCR",
+        "usd_per_page": 0.0015,
+        "scope": "OCR, first 5 million pages per month",
+        "source": "https://cloud.google.com/document-ai/pricing"
+      }
+    ]
+  }
+}

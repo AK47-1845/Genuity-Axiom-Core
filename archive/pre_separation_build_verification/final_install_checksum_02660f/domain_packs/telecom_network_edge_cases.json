@@ -1,0 +1,11 @@
+{
+  "pack_id": "axiom.telecom.network-edge-cases.v1",
+  "buyer_decision": "Validate network optimization, anomaly and assurance systems under rare traffic, mobility and fault conditions",
+  "modalities": ["time_series", "event", "graph", "text", "relational"],
+  "scenario_families": ["congestion burst", "handover failure", "coverage hole", "packet loss or latency boundary", "configuration mismatch", "equipment fault", "novel log sequence"],
+  "hard_constraints": ["topology and subscriber/session keys resolve", "counter units and aggregation windows explicit", "event chronology", "protocol/state legality", "configuration and software version lineage"],
+  "acceptance_metrics": ["fault/anomaly recall", "false-positive rate", "time to detect", "topology and scenario coverage", "network KPI impact", "operator workload"],
+  "required_approvers": ["network/domain owner", "assurance/model owner", "security/privacy owner"],
+  "adapter_requirements": ["approved network/protocol simulator for causal performance claims"],
+  "prohibited_claims": ["synthetic traces prove production network behavior", "graph integrity alone establishes protocol validity"]
+}

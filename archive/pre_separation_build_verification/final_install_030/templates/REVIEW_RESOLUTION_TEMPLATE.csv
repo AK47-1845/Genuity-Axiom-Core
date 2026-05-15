@@ -1,0 +1,2 @@
+exception_id,disposition,resolved_value_json,reviewer,reviewed_at_utc,evidence_reference,note
+EX-001,NEEDS_NEW_EVIDENCE,,reviewer@example.com,2026-08-12T13:30:00Z,work-order-or-document-reference,Replace this example with an actual queue decision

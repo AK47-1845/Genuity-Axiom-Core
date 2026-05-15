@@ -1,0 +1,3 @@
+document_id,field_name,expected_json,critical
+01_PURCHASE_ORDER,po_number,"""PO-1001""",true
+01_PURCHASE_ORDER,quantity,45,true

@@ -1,0 +1,11 @@
+{
+  "pack_id": "axiom.medtech.device-validation.v1",
+  "buyer_decision": "Test device algorithms, alarms, connectivity and software behavior across sparse or sensitive conditions",
+  "modalities": ["time_series", "event", "relational", "text", "image", "simulation"],
+  "scenario_families": ["alarm threshold boundary", "sensor artifact", "connectivity loss", "device fault", "workflow delay", "rare patient/device combination", "software/configuration change"],
+  "hard_constraints": ["event and alarm chronology", "units/reference ranges explicit", "device state transitions legal", "software and hardware versions recorded", "clinical meaning reviewed by qualified owner"],
+  "acceptance_metrics": ["alarm sensitivity and specificity", "software test coverage", "subgroup performance", "real-holdout task utility", "privacy risk", "expert review"],
+  "required_approvers": ["medical-device domain owner", "clinical owner where applicable", "quality/regulatory owner", "privacy/security owner", "model owner"],
+  "privacy_controls": ["minimum necessary fields", "expert de-identification where required", "private execution", "recipient and retention contract"],
+  "prohibited_claims": ["synthetic data establishes clinical validity", "Axiom output is regulatory approval"]
+}

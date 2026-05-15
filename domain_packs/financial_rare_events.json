@@ -1,0 +1,11 @@
+{
+  "pack_id": "axiom.finance.rare-events.v1",
+  "buyer_decision": "Stress-test fraud, credit and operational-risk models on sparse adverse scenarios",
+  "modalities": ["relational", "event", "time_series", "text"],
+  "scenario_families": ["novel fraud pattern", "thin-file customer", "correlated default stress", "merchant or geography shift", "operational outage", "policy boundary"],
+  "hard_constraints": ["transaction/account/customer keys resolve", "timestamps and balances reconcile", "amount and currency logic", "no impossible post-event state"],
+  "acceptance_metrics": ["recall at governed false-positive rate", "loss-weighted detection", "segment stability", "real-holdout TSTR", "analyst workload"],
+  "privacy_controls": ["recipient-specific linkage assessment", "direct and quasi-identifier control", "formal DP only with verified budget", "human fairness and model-risk review"],
+  "prohibited_claims": ["synthetic data eliminates bias", "privacy score proves regulatory compliance"],
+  "required_approvers": ["model-risk owner", "fraud/credit domain owner", "privacy/legal owner"]
+}
