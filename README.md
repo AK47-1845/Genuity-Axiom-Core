@@ -4,7 +4,7 @@ Genuity Axiom is evidence-gated synthetic and rare-scenario data infrastructure 
 
 Start with [`START_HERE.md`](START_HERE.md). The product name is **Axiom**; `pramana` remains only as a compatibility alias.
 
-Company-wide strategy remains at the workspace root: [`START_HERE_GENUITY_IO.md`](../START_HERE_GENUITY_IO.md). The immediate evidence-reconciliation wedge is independently contained in [`Genuity2.0 usecase1`](<../Genuity2.0 usecase1/README.md>).
+Related Genuity IO repos: [genuity-reconcile](https://github.com/AK47-1845/genuity-reconcile) (evidence-reconciliation engine) and [genuity-library](https://github.com/AK47-1845/genuity-library) (original library line, on PyPI as `genuity`).
 
 ## Why it exists
 
